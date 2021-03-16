@@ -9,9 +9,7 @@ import javax.swing.*;
 public class Main extends TreeScript {
     @Override
     public void onStart() {
-        SwingUtilities.invokeLater(() ->{
-
-        });
+        SwingUtilities.invokeLater(GoTradeGUI::new);
     }
 
     @Override
