@@ -1,4 +1,3 @@
-import framework.Node;
 import framework.NodeBranch;
 import framework.TreeScript;
 import org.dreambot.api.script.Category;
@@ -12,7 +11,7 @@ public class Main extends TreeScript {
     private ArrayList<NodeBranch> tasks = new ArrayList<>();
     @Override
     public void onStart() {
-        SwingUtilities.invokeLater(() -> new GoTradeGUI(tasks));
+        SwingUtilities.invokeLater(() -> new GUI(tasks));
     }
 
     @Override
