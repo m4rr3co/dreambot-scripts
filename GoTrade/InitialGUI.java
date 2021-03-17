@@ -1,5 +1,4 @@
 import framework.NodeBranch;
-import org.dreambot.api.methods.MethodProvider;
 
 import javax.swing.*;
 import java.awt.*;
