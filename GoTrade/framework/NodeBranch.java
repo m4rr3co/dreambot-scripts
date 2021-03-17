@@ -1,8 +1,18 @@
 package framework;
 
 public abstract class NodeBranch extends Node {
-    /*
-     * Check if this branch is still available
+
+    /**
+     * Name of this task. Paint purposes.
+     */
+    private String name;
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * This is supposed to provide info about whether
+     * this task was completed in this run or not.
      */
     public abstract boolean isDone();
 
