@@ -14,8 +14,17 @@ public class InitialGUI extends JFrame {
 
     //List for storing tasks chosen by user
     private ArrayList<NodeBranch> tasks;
+
+    //List for storing all chosen tasks
+    private JList<NodeBranch> chosenTasks;
     //List for storing all implemented tasks
     private JList<NodeBranch> availableTasks;
+    /**
+     * Populate availableTasks which user can choose from.
+     */
+    private void setAvailableTasks() {
+
+    }
 
     /**
      * @param tasks List of tasks to be done in this session.
@@ -37,19 +46,25 @@ public class InitialGUI extends JFrame {
      */
     private JPanel initComponents() {
         JPanel mainPanel = new JPanel();
-        mainPanel.setPreferredSize(new Dimension(200,200));
+        mainPanel.setPreferredSize(new Dimension(400,200));
+        mainPanel.setLayout(new GridBagLayout());
+        GridBagConstraints c = new GridBagConstraints();
+
+        Dimension scrollPaneSize = new Dimension(200,200);
 
         JScrollPane tasksMenu = new JScrollPane(availableTasks);
         tasksMenu.setBorder(BorderFactory.createTitledBorder("Available Tasks"));
-        tasksMenu.setPreferredSize(new Dimension(200,200));
-        mainPanel.add(tasksMenu);
+        tasksMenu.setPreferredSize(scrollPaneSize);
+        c.gridx = 0;
+        c.gridy = 0;
+        mainPanel.add(tasksMenu,c);
+
+        JScrollPane chosenTasksMenu = new JScrollPane(chosenTasks);
+        chosenTasksMenu.setBorder(BorderFactory.createTitledBorder("Chosen Tasks"));
+        chosenTasksMenu.setPreferredSize(scrollPaneSize);
+        c.gridx = 1;
+        mainPanel.add(chosenTasksMenu,c);
+
         return mainPanel;
-    }
-
-    /**
-     * Populate availableTasks which user can choose from.
-     */
-    private void setAvailableTasks() {
-
     }
 }
