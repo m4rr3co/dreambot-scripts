@@ -5,12 +5,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class GUI extends JFrame {
+public class initialGUI extends JFrame {
 
     //List for storing tasks chosen by user
-    private ArrayList<NodeBranch> tasks = new ArrayList<>();
+    private ArrayList<NodeBranch> tasks;
 
-    public GUI(ArrayList<NodeBranch> tasks) {
+    public initialGUI(ArrayList<NodeBranch> tasks) {
         super("GoTrade - F2P Essentials");
         this.tasks = tasks;
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);

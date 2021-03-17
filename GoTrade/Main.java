@@ -11,7 +11,7 @@ public class Main extends TreeScript {
     private ArrayList<NodeBranch> tasks = new ArrayList<>();
     @Override
     public void onStart() {
-        SwingUtilities.invokeLater(() -> new GUI(tasks));
+        SwingUtilities.invokeLater(() -> new initialGUI(tasks));
     }
 
     @Override
