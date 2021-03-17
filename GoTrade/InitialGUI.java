@@ -1,4 +1,5 @@
 import framework.NodeBranch;
+import org.objectweb.asm.J;
 
 import javax.swing.*;
 import java.awt.*;
@@ -45,8 +46,9 @@ public class InitialGUI extends JFrame {
      */
     private JPanel initComponents() {
         JPanel mainPanel = new JPanel();
+        mainPanel.setBackground(Color.WHITE);
 
-        mainPanel.setPreferredSize(new Dimension(400,200));
+        mainPanel.setPreferredSize(new Dimension(450,300));
         mainPanel.setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
 
@@ -59,11 +61,37 @@ public class InitialGUI extends JFrame {
         c.gridy = 0;
         mainPanel.add(tasksMenu,c);
 
+        JPanel addRemoveButtons = new JPanel();
+        addRemoveButtons.setBackground(Color.WHITE);
+        addRemoveButtons.setPreferredSize(new Dimension(50,80));
+        addRemoveButtons.setLayout(new BoxLayout(addRemoveButtons,BoxLayout.PAGE_AXIS));
+        JButton addButton = new JButton(">");
+        JButton removeButton = new JButton("<");
+        addRemoveButtons.add(addButton);
+        addRemoveButtons.add(removeButton);
+        c.gridx = 1;
+        mainPanel.add(addRemoveButtons,c);
+
         JScrollPane chosenTasksMenu = new JScrollPane(chosenTasks);
         chosenTasksMenu.setBorder(BorderFactory.createTitledBorder("Chosen Tasks"));
         chosenTasksMenu.setPreferredSize(scrollPaneSize);
-        c.gridx = 1;
+        c.gridx = 2;
         mainPanel.add(chosenTasksMenu,c);
+
+        JLabel tasksInfo = new JLabel("<html>Some info goes here <br> more info<br> more info<br> more info<br> more info<br> more info<br> more info </html>");
+        JScrollPane tasksInfoPane = new JScrollPane(tasksInfo);
+        tasksInfoPane.setBorder(BorderFactory.createTitledBorder("Tasks Info"));
+        tasksInfoPane.setPreferredSize(new Dimension(250,100));
+        c.gridwidth = 2;
+        c.gridy = 1;
+        c.gridx = 1;
+        mainPanel.add(tasksInfoPane,c);
+
+        JButton startButton = new JButton("START SCRIPT");
+        startButton.setPreferredSize(new Dimension(150,80));
+        c.gridwidth = 1;
+        c.gridx = 0;
+        mainPanel.add(startButton,c);
 
         return mainPanel;
     }
@@ -75,7 +103,7 @@ public class InitialGUI extends JFrame {
     private JMenuBar initMenu() {
         JMenuBar menuBar = new JMenuBar();
 
-        JMenu taskManager = new JMenu("Tasks");
+        JMenu taskManager = new JMenu("File");
         menuBar.add(taskManager);
 
         JMenuItem saveTasks = new JMenuItem("Save Tasks");
