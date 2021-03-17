@@ -3,10 +3,11 @@ package framework;
 public abstract class NodeBranch extends Node {
 
     /**
-     * Name of this task. Paint purposes.
+     * Name of this task. Paint and GUI purposes.
      */
     private String name;
-    public String getName() {
+    @Override
+    public String toString() {
         return name;
     }
 
