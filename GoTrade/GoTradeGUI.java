@@ -6,7 +6,10 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class GoTradeGUI extends JFrame {
+
+    //List for storing tasks chosen by user
     private ArrayList<NodeBranch> tasks = new ArrayList<>();
+
     public GoTradeGUI(ArrayList<NodeBranch> tasks) {
         super("GoTrade - F2P Essentials");
         this.tasks = tasks;
