@@ -1,4 +1,7 @@
 import framework.NodeBranch;
+import sun.tools.jstat.Alignment;
+import tasks.Chicken.ChickenRootbranch;
+import tasks.Fishing.Fishingbranch;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,16 +16,6 @@ public class InitialGUI extends JFrame {
 
     //List for storing tasks chosen by user
     private ArrayList<NodeBranch> tasks;
-    //List for storing all chosen tasks
-    private JList<NodeBranch> chosenTasks;
-    //List for storing all implemented tasks
-    private JList<NodeBranch> availableTasks;
-    /**
-     * Populate availableTasks which user can choose from.
-     */
-    private void setAvailableTasks() {
-
-    }
 
     /**
      * @param tasks List of tasks to be done in this session.
@@ -31,7 +24,6 @@ public class InitialGUI extends JFrame {
         super("F2P Essentials");
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         this.tasks = tasks;
-        setAvailableTasks();
         setJMenuBar(initMenu());
         add(initComponents());
         pack();
@@ -52,8 +44,11 @@ public class InitialGUI extends JFrame {
         GridBagConstraints c = new GridBagConstraints();
 
         Dimension scrollPaneSize = new Dimension(200,200);
+        DefaultListModel<String> tasksListModel = new DefaultListModel<>();
+        setTasks(tasksListModel);
+        JList<String> availableTasksJList = new JList<>(tasksListModel);
 
-        JScrollPane tasksMenu = new JScrollPane(availableTasks);
+        JScrollPane tasksMenu = new JScrollPane(availableTasksJList);
         tasksMenu.setBorder(BorderFactory.createTitledBorder("Available Tasks"));
         tasksMenu.setPreferredSize(scrollPaneSize);
         c.gridx = 0;
@@ -71,6 +66,7 @@ public class InitialGUI extends JFrame {
         c.gridx = 1;
         mainPanel.add(addRemoveButtons,c);
 
+        JList<String> chosenTasks = new JList<>(new DefaultListModel<>());
         JScrollPane chosenTasksMenu = new JScrollPane(chosenTasks);
         chosenTasksMenu.setBorder(BorderFactory.createTitledBorder("Chosen Tasks"));
         chosenTasksMenu.setPreferredSize(scrollPaneSize);
@@ -86,11 +82,19 @@ public class InitialGUI extends JFrame {
         c.gridx = 1;
         mainPanel.add(tasksInfoPane,c);
 
-        JButton startButton = new JButton("START SCRIPT");
-        startButton.setPreferredSize(new Dimension(150,80));
+        JPanel startButtonPanel = new JPanel();
+        startButtonPanel.setBackground(Color.WHITE);
+        startButtonPanel.setLayout(new BoxLayout(startButtonPanel,BoxLayout.PAGE_AXIS));
+        JButton startButton = new JButton("START");
+        JLabel startErrors = new JLabel("Status: Waiting.");
+        startErrors.setPreferredSize(new Dimension(100,50));
+        startButton.setPreferredSize(startErrors.getPreferredSize());
+        startErrors.setHorizontalAlignment(SwingConstants.CENTER);
+        startButtonPanel.add(startButton);
+        startButtonPanel.add(startErrors);
         c.gridwidth = 1;
         c.gridx = 0;
-        mainPanel.add(startButton,c);
+        mainPanel.add(startButtonPanel,c);
 
         return mainPanel;
     }
@@ -111,5 +115,12 @@ public class InitialGUI extends JFrame {
         taskManager.add(loadTasks);
 
         return menuBar;
+    }
+
+    private void setTasks(DefaultListModel<String> list) {
+        list.addElement("Melee Chickens");
+        list.addElement("Range Chickens");
+        list.addElement("Lumbridge Fishing");
+        list.addElement("Lumbridge Woodcutting");
     }
 }
