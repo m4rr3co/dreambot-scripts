@@ -1,6 +1,10 @@
 package framework;
 
 public abstract class NodeBranch extends Node {
+    /*
+     * Check if this branch is still available
+     */
+    public abstract boolean isDone();
 
     /*
      * Left node, chosen when validation is successful

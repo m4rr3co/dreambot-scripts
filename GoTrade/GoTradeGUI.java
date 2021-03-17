@@ -1,11 +1,15 @@
+import framework.NodeBranch;
 import org.dreambot.api.methods.MethodProvider;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class GoTradeGUI extends JFrame {
-    public GoTradeGUI() {
+    private ArrayList<NodeBranch> tasks = new ArrayList<>();
+    public GoTradeGUI(ArrayList<NodeBranch> tasks) {
         super("GoTrade - F2P Essentials");
+        this.tasks = tasks;
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         add(initComponents());
         setVisible(true);
