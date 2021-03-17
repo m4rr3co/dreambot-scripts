@@ -28,7 +28,7 @@ public class InitialGUI extends JFrame {
      * @param tasks List of tasks to be done in this session.
      */
     public InitialGUI(ArrayList<NodeBranch> tasks) {
-        super("GoTrade - F2P Essentials");
+        super("F2P Essentials");
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         this.tasks = tasks;
         setAvailableTasks();
