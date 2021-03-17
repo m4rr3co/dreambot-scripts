@@ -13,7 +13,6 @@ public class InitialGUI extends JFrame {
 
     //List for storing tasks chosen by user
     private ArrayList<NodeBranch> tasks;
-
     //List for storing all chosen tasks
     private JList<NodeBranch> chosenTasks;
     //List for storing all implemented tasks
@@ -33,6 +32,7 @@ public class InitialGUI extends JFrame {
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         this.tasks = tasks;
         setAvailableTasks();
+        setJMenuBar(initMenu());
         add(initComponents());
         pack();
         setResizable(false);
@@ -45,6 +45,7 @@ public class InitialGUI extends JFrame {
      */
     private JPanel initComponents() {
         JPanel mainPanel = new JPanel();
+
         mainPanel.setPreferredSize(new Dimension(400,200));
         mainPanel.setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
@@ -65,5 +66,23 @@ public class InitialGUI extends JFrame {
         mainPanel.add(chosenTasksMenu,c);
 
         return mainPanel;
+    }
+
+    /**
+     * Menu bar for saving/loading tasks.
+     * @return JMenuBar
+     */
+    private JMenuBar initMenu() {
+        JMenuBar menuBar = new JMenuBar();
+
+        JMenu taskManager = new JMenu("Tasks");
+        menuBar.add(taskManager);
+
+        JMenuItem saveTasks = new JMenuItem("Save Tasks");
+        JMenuItem loadTasks = new JMenuItem("Load Tasks");
+        taskManager.add(saveTasks);
+        taskManager.add(loadTasks);
+
+        return menuBar;
     }
 }
