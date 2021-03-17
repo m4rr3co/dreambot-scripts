@@ -18,7 +18,7 @@ public class InitialGUI extends JFrame {
     private JList<NodeBranch> availableTasks;
 
     /**
-     * @param tasks List of tasks to be done in this session
+     * @param tasks List of tasks to be done in this session.
      */
     public InitialGUI(ArrayList<NodeBranch> tasks) {
         super("GoTrade - F2P Essentials");
@@ -45,6 +45,10 @@ public class InitialGUI extends JFrame {
         mainPanel.add(tasksMenu);
         return mainPanel;
     }
+
+    /**
+     * Populate availableTasks which user can choose from.
+     */
     private void setAvailableTasks() {
 
     }
