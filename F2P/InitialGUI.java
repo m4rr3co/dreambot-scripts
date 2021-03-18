@@ -72,13 +72,15 @@ public class InitialGUI extends JFrame {
         addRemoveButtons.setPreferredSize(new Dimension(50,80));
         addRemoveButtons.setLayout(new BoxLayout(addRemoveButtons,BoxLayout.PAGE_AXIS));
         JButton addButton = new JButton(">");
+
         JButton removeButton = new JButton("<");
         addRemoveButtons.add(addButton);
         addRemoveButtons.add(removeButton);
         c.gridx = 1;
         mainPanel.add(addRemoveButtons,c);
 
-        JList<String> chosenTasks = new JList<>(new DefaultListModel<>());
+        DefaultListModel<String> chosenTasksList = new DefaultListModel<>();
+        JList<String> chosenTasks = new JList<>(chosenTasksList);
         JScrollPane chosenTasksMenu = new JScrollPane(chosenTasks);
         chosenTasksMenu.setBorder(BorderFactory.createTitledBorder("Chosen Tasks"));
         chosenTasksMenu.setPreferredSize(scrollPaneSize);
@@ -107,6 +109,19 @@ public class InitialGUI extends JFrame {
         c.gridwidth = 1;
         c.gridx = 0;
         mainPanel.add(startButtonPanel,c);
+
+        //Listeners
+        addButton.addActionListener(l -> {
+            int selectedIndex = availableTasksJList.getSelectedIndex();
+            if (selectedIndex >= 0) {
+                chosenTasksList.addElement(tasksListModel.get(selectedIndex).toString());
+            }
+        });
+        removeButton.addActionListener(l -> {
+            int selectedIndex = chosenTasks.getSelectedIndex();
+            if (selectedIndex >= 0)
+                chosenTasksList.removeElementAt(selectedIndex);
+        });
 
         return mainPanel;
     }
