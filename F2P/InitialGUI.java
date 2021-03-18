@@ -112,7 +112,7 @@ public class InitialGUI extends JFrame {
     }
 
     /**
-     * Menu bar for saving/loading tasks.
+     * Menu bar for saving/loading tasks. News/about menu item.
      * @return JMenuBar
      */
     private JMenuBar initMenu() {
@@ -122,12 +122,24 @@ public class InitialGUI extends JFrame {
         menuBar.add(taskManager);
 
         JMenuItem saveTasks = new JMenuItem("Save Tasks");
-        JMenuItem loadTasks = new JMenuItem("Load Tasks");
         taskManager.add(saveTasks);
+        JMenuItem loadTasks = new JMenuItem("Load Tasks");
         taskManager.add(loadTasks);
+
+        JMenu about = new JMenu("About");
+        menuBar.add(about);
+
+        JMenuItem news = new JMenuItem("News");
+        about.add(news);
+        JMenuItem aboutScript = new JMenuItem("About Script");
+        about.add(aboutScript);
 
         return menuBar;
     }
+
+    /**
+     * Support class for fully describing a task.
+     */
     static class Task {
         private final String name;
         private final String description;
@@ -142,9 +154,16 @@ public class InitialGUI extends JFrame {
             return description;
         }
     }
+
+    /**
+     * Sets all tasks available for user.
+     * @param list Variable used for showing all available tasks.
+     */
     private void setTasks(DefaultListModel<Task> list) {
         list.addElement(new Task("Chicken","Hunts chickens near Lumbridge using melee."));
         list.addElement(new Task("Fishing","Fishes shrimps south of Lumbridge castle."));
         list.addElement(new Task("Woodcutting","Chops trees around Lumbridge castle."));
+        list.addElement(new Task("Anti-AFK","Walks to GE and stays logged in for 30min."));
+        list.addElement(new Task("Break","Logs off and stays off for 30min."));
     }
 }
