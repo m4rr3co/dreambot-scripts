@@ -43,16 +43,17 @@ public class InitialGUI extends JFrame {
         GridBagConstraints c = new GridBagConstraints();
 
         Dimension scrollPaneSize = new Dimension(200,200);
-        DefaultListModel<String> tasksListModel = new DefaultListModel<>();
+        DefaultListModel<Task> tasksListModel = new DefaultListModel<>();
         setTasks(tasksListModel);
-        JList<String> availableTasksJList = new JList<>(tasksListModel);
+        JList<Task> availableTasksJList = new JList<>(tasksListModel);
         availableTasksJList.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
                 if (SwingUtilities.isRightMouseButton(e)) {
                     int index = availableTasksJList.locationToIndex(e.getPoint());
                     JPopupMenu popupMenu = new JPopupMenu("Description");
-                    JLabel desc = new JLabel("Info comes here");
+                    String description = tasksListModel.get(index).getDescription();
+                    JLabel desc = new JLabel(description);
                     popupMenu.add(desc);
                     popupMenu.show(availableTasksJList,e.getX(),e.getY());
                 }
@@ -127,16 +128,23 @@ public class InitialGUI extends JFrame {
 
         return menuBar;
     }
-    private void setTasks(DefaultListModel<String> list) {
-        list.addElement("Chickens");
-        list.addElement("Lumbridge Fishing");
+    private void setTasks(DefaultListModel<Task> list) {
+        list.addElement(new Task("Chicken","Hunts chickens near Lumbridge using melee."));
+        list.addElement(new Task("Fishing","Fishes shrimps south of Lumbridge castle."));
+        list.addElement(new Task("Woodcutting","Chops trees around Lumbridge castle."));
     }
     static class Task {
-        private String name;
-        private String description;
+        private final String name;
+        private final String description;
         public Task (String name,String description) {
             this.name = name;
             this.description = description;
+        }
+        public String toString() {
+            return name;
+        }
+        public String getDescription() {
+            return description;
         }
     }
 }
