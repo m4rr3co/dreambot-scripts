@@ -128,11 +128,6 @@ public class InitialGUI extends JFrame {
 
         return menuBar;
     }
-    private void setTasks(DefaultListModel<Task> list) {
-        list.addElement(new Task("Chicken","Hunts chickens near Lumbridge using melee."));
-        list.addElement(new Task("Fishing","Fishes shrimps south of Lumbridge castle."));
-        list.addElement(new Task("Woodcutting","Chops trees around Lumbridge castle."));
-    }
     static class Task {
         private final String name;
         private final String description;
@@ -146,5 +141,10 @@ public class InitialGUI extends JFrame {
         public String getDescription() {
             return description;
         }
+    }
+    private void setTasks(DefaultListModel<Task> list) {
+        list.addElement(new Task("Chicken","Hunts chickens near Lumbridge using melee."));
+        list.addElement(new Task("Fishing","Fishes shrimps south of Lumbridge castle."));
+        list.addElement(new Task("Woodcutting","Chops trees around Lumbridge castle."));
     }
 }
