@@ -3,29 +3,33 @@ package tasks.Fishing;
 import framework.Node;
 import framework.NodeBranch;
 import org.dreambot.api.methods.container.impl.Inventory;
-import tasks.Fishing.branches.FishingNetbranch;
-import tasks.Fishing.branches.GoFishingbranch;
 
 public class Fishingbranch extends NodeBranch {
-    private final Node goFishingbranch = new GoFishingbranch();
-    private final Node fishingNetbranch = new FishingNetbranch();
+    private final long endOfTheTask;
+    public Fishingbranch(long endOfTheTask) {
+        this.endOfTheTask = endOfTheTask;
+    }
+    @Override
+    public boolean isDone() {
+        return System.currentTimeMillis() >= endOfTheTask;
+    }
+
+    private final Node fishingLeaf = new Fishingleaf();
+    private final Node fishingNetleaf = new FishingNetleaf();
     @Override
     public boolean validate() {
         return Inventory.contains("Small fishing net");
     }
 
-    @Override
-    public boolean isDone() {
-        return false;
-    }
+
 
     @Override
     public Node isTrue() {
-        return goFishingbranch;
+        return fishingLeaf;
     }
 
     @Override
     public Node isFalse() {
-        return fishingNetbranch;
+        return fishingNetleaf;
     }
 }

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 @ScriptManifest(category = Category.MISC, name = "F2P Essentials", author = "m4rr3co", version = 0.1)
 public class Main extends TreeScript {
+    private static int latency;
     private ArrayList<NodeBranch> tasks = new ArrayList<>();
     @Override
     public void onStart() {

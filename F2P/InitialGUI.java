@@ -1,10 +1,9 @@
 import framework.NodeBranch;
-import sun.tools.jstat.Alignment;
-import tasks.Chicken.ChickenRootbranch;
-import tasks.Fishing.Fishingbranch;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 public class InitialGUI extends JFrame {
@@ -47,6 +46,18 @@ public class InitialGUI extends JFrame {
         DefaultListModel<String> tasksListModel = new DefaultListModel<>();
         setTasks(tasksListModel);
         JList<String> availableTasksJList = new JList<>(tasksListModel);
+        availableTasksJList.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                if (SwingUtilities.isRightMouseButton(e)) {
+                    int index = availableTasksJList.locationToIndex(e.getPoint());
+                    JPopupMenu popupMenu = new JPopupMenu("Description");
+                    JLabel desc = new JLabel("Info comes here");
+                    popupMenu.add(desc);
+                    popupMenu.show(availableTasksJList,e.getX(),e.getY());
+                }
+            }
+        });
 
         JScrollPane tasksMenu = new JScrollPane(availableTasksJList);
         tasksMenu.setBorder(BorderFactory.createTitledBorder("Available Tasks"));
@@ -116,11 +127,16 @@ public class InitialGUI extends JFrame {
 
         return menuBar;
     }
-
     private void setTasks(DefaultListModel<String> list) {
-        list.addElement("Melee Chickens");
-        list.addElement("Range Chickens");
+        list.addElement("Chickens");
         list.addElement("Lumbridge Fishing");
-        list.addElement("Lumbridge Woodcutting");
+    }
+    static class Task {
+        private String name;
+        private String description;
+        public Task (String name,String description) {
+            this.name = name;
+            this.description = description;
+        }
     }
 }

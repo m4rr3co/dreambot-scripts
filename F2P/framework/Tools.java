@@ -14,6 +14,10 @@ import org.dreambot.api.methods.widget.Widgets;
 import org.dreambot.api.script.impl.TaskScript;
 
 public class Tools extends TaskScript {
+    private static int latency;
+    public static int getLatency() {
+        return (int) Calculations.random(latency,1.5*latency);
+    }
     public static void walkTo(Tile destination) {
         int runEnabled;
         if (Walking.isRunEnabled())
