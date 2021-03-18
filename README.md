@@ -1,7 +1,6 @@
 # dreambot-scripts
 
-Compile all files from this repository into a .jar file and run it using Dreambot's Client.
-
 Please submit suggestions and bugs.
+m4rr3co's discord: m4rr3co#2498
 
 Good luck to you all.
